@@ -16,7 +16,8 @@ jobs:
 
         include:
           - name: linux
-            os: ubuntu-latest
+            os: ubuntu-18.04
+            target: x86_64-unknown-linux-gnu
             artifact_name: target/release/graphql-pal
             asset_name: graphql-pal-linux
 
@@ -27,6 +28,7 @@ jobs:
         with:
           profile: minimal
           toolchain: stable
+          target: ${{ matrix.job.target }}
 
       - name: Build
         run: cargo build --release --locked
